@@ -68,30 +68,36 @@ class _HomePage extends State<HomePage> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    importarDadosParaFirestore(); // Chamar a função durante a inicialização do aplicativo
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   importarDadosParaFirestore(); // Chamar a função durante a inicialização do aplicativo
+  // }
 
-  Future<void> importarDadosParaFirestore() async {
-    try {
-      // Carregar o arquivo JSON
-      final String jsonString =
-          await rootBundle.loadString('assets/seu_arquivo.json');
-      final Map<String, dynamic> dados = json.decode(jsonString);
+  // Future<void> importarDadosParaFirestore() async {
+  //   try {
+  //     // Carregar o arquivo JSON
+  //     final String jsonString =
+  //         await rootBundle.loadString('assets/Dataset_Joias_Export.json');
+  //     final dynamic dados = json.decode(jsonString);
 
-      // Iterar sobre os dados e adicionar ao Firestore
-      final collectionRef = FirebaseFirestore.instance.collection('Dataset');
-      for (String chave in dados.keys) {
-        await collectionRef.doc(chave).set(dados[chave]);
-      }
-
-      print('Importação concluída com sucesso!');
-    } catch (e) {
-      print('Erro ao importar os dados: $e');
-    }
-  }
+  //     // Verifica se os dados são uma lista
+  //     if (dados is List) {
+  //       final collectionRef = FirebaseFirestore.instance.collection('Vendas');
+  //       for (var item in dados) {
+  //         if (item is Map<String, dynamic>) {
+  //           // Adiciona cada item à coleção do Firestore
+  //           await collectionRef.add(item);
+  //         }
+  //       }
+  //       print('Importação concluída com sucesso!');
+  //     } else {
+  //       print('Erro: o JSON não é uma lista.');
+  //     }
+  //   } catch (e) {
+  //     print('Erro ao importar os dados: $e');
+  //   }
+  // }
 
   Future<void> showConfirmationDialog(
       BuildContext context, String scannedBarcode) async {
